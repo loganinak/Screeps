@@ -17,9 +17,9 @@ module.exports.loop = function() {
 
   // Set out roles and max energy usage (TODO)
   const roles = {
-    "harvester": [2, 1, 1, 0, 0, 0, 0, 0, 0],
-    "upgrader": [2, 1, 1, 0, 0, 0, 0, 0, 0],
-    "builder": [2, 1, 1, 0, 0, 0, 0, 0, 0],
+    "harvester": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
+    "upgrader": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
+    "builder": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
     "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
   };
 
