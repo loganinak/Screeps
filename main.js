@@ -25,8 +25,6 @@ module.exports.loop = function() {
 
   const creeps = Object.keys(Memory.creeps);
 
-  console.log(creeps);
-
   // Cleanup memory
   creeps.map(creepName => {
     if (!Game.creeps[creepName]) {
@@ -36,10 +34,10 @@ module.exports.loop = function() {
   });
 
   // For now assume there is only one room
-  let roomName = Game.spawns[0].room.name;
+  // let roomName = Game.spawns[0].room.name;
 
   // Run script to turn safeMode on if hostiles are in the room
-  lastRestort.saveMyRoom(roomName);
+  // lastRestort.saveMyRoom(roomName);
 
   // Process spawners
   Game.spawns.map(spawnName => {
