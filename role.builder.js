@@ -4,7 +4,12 @@ var roleBuilder = {
 
   /** @param {Creep} creep **/
   run: function(creepName) {
-    const creep = creepName;
+    const creep = Game.creeps[creepName];
+
+    if(creep.spawning) {
+      return;
+    }
+
     // check state
     if (creep.memory.state == "building" && creep.store[RESOURCE_ENERGY] == 0) {
       creep.memory.state = "harvesting";
