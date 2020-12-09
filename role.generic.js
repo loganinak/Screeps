@@ -103,3 +103,5 @@ var roleGeneric = {
     }
   }
 };
+
+module.exports = roleUpgrader;
