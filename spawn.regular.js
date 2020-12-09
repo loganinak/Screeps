@@ -58,7 +58,7 @@ function spawnCreep(role, spawn, bodyRatio) {
   // Spawn creep
   const result = spawn.spawnCreep(bodyParts, newName, {
     memory: {
-      role: role,
+      state: role,
       idleTime: 0,
       timeAlive: 0
     }
