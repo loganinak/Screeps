@@ -11,7 +11,8 @@ var spawnRegular = {
       "harvester": 0,
       "upgrader": 0,
       "builder": 0,
-      "scout": 0};
+      "scout": 0
+    };
 
     Object.keys(roles).forEach((role) => {
       const creepsOfRole = _.filter(Game.creeps, (creep) => creep.memory.role == role);
@@ -26,13 +27,30 @@ var spawnRegular = {
     const energyCapacityAvailable = Game.spawns[name].room.energyCapacityAvailable
 
     // Decide which creep to spawn
-    if (!spawn.spawning && count["harvester"] < Memory.harvesters && energyAvailable >= 300) {
+    if (
+      !spawn.spawning &&
+      count["harvester"] <= Memory.harvesters &&
+      energyAvailable >= 300
+    ) {
       spawnCreep("harvester", spawn, roles["harvester"]);
-    } else if (!spawn.spawning && count["upgrader"] < Memory.upgraders && energyAvailable == energyCapacityAvailable) {
+    } else if (
+      !spawn.spawning &&
+      count["upgrader"] <= Memory.upgraders &&
+      energyAvailable == energyCapacityAvailable
+    ) {
       spawnCreep("upgrader", spawn, roles["upgrader"]);
-    } else if (!spawn.spawning && constructionCount > 0 && count["builder"] < Memory.builder && energyAvailable == energyCapacityAvailable) {
+    } else if (
+      !spawn.spawning &&
+      constructionCount > 0 &&
+      count["builder"] <= Memory.builders &&
+      energyAvailable == energyCapacityAvailable
+    ) {
       spawnCreep("builder", spawn, roles["builder"]);
-    } else if (!spawn.spawning && count["scout"] < Memory.scout && energyAvailable > roles["scout"][8]) {
+    } else if (
+      !spawn.spawning &&
+      count["scout"] < Memory.scout &&
+      energyAvailable > roles["scout"][8]
+    ) {
       spawnCreep("scout", spawn, roles["scout"]);
     }
 
