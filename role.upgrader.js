@@ -24,10 +24,10 @@ var roleUpgrader = {
     // run state
     switch (creep.memory.state) {
       case "upgrading":
-        creepFunctions.upgrading(creep);
+        roleGeneric.upgrading(creep);
         break;
       case "harvesting":
-        creepFunctions.harvesting(creep);
+        roleGeneric.harvesting(creep);
         break;
       default:
         console.log("upgrader state error")
