@@ -53,7 +53,7 @@ var spawnRegular = {
 function spawnCreep(role, spawn, bodyRatio) {
   // Make creep information
   const newName = role + Game.time;
-  const bodyParts = calculateBodyPartBasedOnRatio(bodyRatio, spawn);
+  const bodyParts = optimizeCreepBody(bodyRatio, spawn);
 
   // Spawn creep
   const result = spawn.spawnCreep(bodyParts, newName, {
