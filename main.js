@@ -23,7 +23,7 @@ module.exports.loop = function() {
     "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
   };
 
-  let creeps = Memory.creeps;
+  let creeps = JSON.parse(RawMemory.creeps);
 
   // Cleanup memory
   creeps.map(creepName => {
