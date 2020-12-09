@@ -23,7 +23,9 @@ module.exports.loop = function() {
     "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
   };
 
-  let creeps = Memory.creeps;
+  const creeps = Object.keys(Memory.creeps);
+
+  console.log(creeps);
 
   // Cleanup memory
   creeps.map(creepName => {
@@ -45,7 +47,7 @@ module.exports.loop = function() {
   });
 
   // Process creeps
-  Game.creeps.map(creepName => {
+  creeps.map(creepName => {
     // Get creep role
     const role = Game.creeps[creepName].memory.role;
 
