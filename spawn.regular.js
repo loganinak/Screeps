@@ -2,7 +2,7 @@ const debug = true;
 
 var spawnRegular = {
   /** @param {string, number, number, number} name **/
-  run: function(name, roles) {
+  run: (name, roles) => {
     // Get reference to spawn
     const spawn = Game.spawns[name];
 

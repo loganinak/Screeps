@@ -5,7 +5,7 @@ var roleScout = require('role.scout');
 var spawnRegular = require('spawn.regular');
 var lastRestort = require('room.failsafe');
 
-module.exports.loop = function() {
+module.exports.loop = () => {
   // Initialize creep targets if there are none
   if (!Memory.harvesters) {
     Memory.harvesters = 1;

@@ -4,13 +4,13 @@ const debug = true;
 var roleUpgrader = {
 
   /** @param {Creep} creep **/
-  run: function(creepName) {
+  run: (creepName) => {
     const creep = Game.creeps[creepName];
 
     if(creep.spawning) {
       return;
     }
-    
+
     // check state
     if (creep.memory.state == "upgrading" && creep.store[RESOURCE_ENERGY] == 0) {
       creep.memory.state = "harvesting";

@@ -3,7 +3,7 @@ const debug = true;
 var roleBuilder = {
 
   /** @param {Creep} creep **/
-  run: function(creepName) {
+  run: (creepName) => {
     const creep = Game.creeps[creepName];
 
     if(creep.spawning) {
