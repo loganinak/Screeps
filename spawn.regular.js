@@ -58,7 +58,7 @@ function spawnCreep(role, spawn, bodyRatio) {
   // Spawn creep
   const result = spawn.spawnCreep(bodyParts, newName, {
     memory: {
-      state: role,
+      role: role,
       idleTime: 0,
       timeAlive: 0
     }
@@ -140,6 +140,7 @@ function optimizeCreepBody(roleRatios, spawn) {
         if (partCost[partType] <= energyLeft && energyUsed + partCost[partType] < maxEnergy) {
           parts.push(partType);
           energyUsed = energyUsed + partCost[partType];
+          energyLeft = spawnEnergy - energyUsed;
         }
       });
       // console.log("spawnEnergy: " + spawnEnergy);
