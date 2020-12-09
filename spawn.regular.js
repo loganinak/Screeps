@@ -120,11 +120,12 @@ function optimizeCreepBody(roleRatios, spawn) {
     energyLeft = spawnEnergy - energyUsed;
 
     // If there is energy left and adding another ratio will not make it go over maxEnergy
-    if (energyLeft >= ratioCost && ratioCost + energyUsed <= maxEnergy) {
+    if (energyLeft <= ratioCost && ratioCost + energyUsed <= maxEnergy) {
       // Add the amount from the ratios array
       Object.keys(ratios).forEach((partType) => {
         if (ratios[partType] > 0) {
           for (i = 0; i < ratios[partType]; i++) {
+
             parts.push(partType);
           }
         }
@@ -132,12 +133,13 @@ function optimizeCreepBody(roleRatios, spawn) {
 
       // Keep track of energy
       energyUsed += ratioCost;
-    } else if (false) {
+
+    } else {
       // Add what can fit
       Object.keys(ratios).forEach((partType) => {
         if (partCost[partType] <= spawnEnergy) {
           parts.push(partType);
-          energyUsed = energyUsed - partCost[partType];
+          energyUsed = energyUsed + partCost[partType];
         }
       });
       // console.log("spawnEnergy: " + spawnEnergy);
