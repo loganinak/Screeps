@@ -136,7 +136,7 @@ function optimizeCreepBody(roleRatios, spawn) {
       Object.keys(ratios).forEach((partType) => {
         if (partCost[partType] <= spawnEnergy) {
           parts.push(partType);
-          spawnEnergy = spawnEnergy - partCost[partType];
+          energyUsed = energyUsed - partCost[partType];
         }
       });
       // console.log("spawnEnergy: " + spawnEnergy);
