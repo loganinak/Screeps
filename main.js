@@ -54,28 +54,28 @@ module.exports.loop = function() {
     switch (role) {
       case "harvester":
         // Memory.harvesters += roleHarvester.run(creep);
-        roleHarvester.run(creep);
+        roleHarvester.run(creepName);
         if (Memory.harvesters < 3) {
           Memory.harvesters = 3;
         }
         break;
       case "upgrader":
         // Memory.upgraders += roleUpgrader.run(creep);
-        roleUpgrader.run(creep);
+        roleUpgrader.run(creepName);
         if (Memory.upgraders < 1) {
           Memory.upgraders = 1;
         }
         break;
       case "builder":
         // Memory.builders += roleBuilder.run(creep);
-        roleBuilder.run(creep);
+        roleBuilder.run(creepName);
         if (Memory.builders < 1) {
           Memory.builders = 1;
         }
         break;
       case "scout":
         // Memory.scouts += roleScout.run(creep);
-        roleScout.run(creep);
+        roleScout.run(creepName);
         break;
       default:
         console.log("Error in creep processor");
