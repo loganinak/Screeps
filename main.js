@@ -23,8 +23,10 @@ module.exports.loop = function() {
     "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
   };
 
+  let creeps = Memory.creeps;
+
   // Cleanup memory
-  Memory.creeps.map(creepName => {
+  creeps.map(creepName => {
     if (!Game.creeps[creepName]) {
       delete Memory.creeps[name];
       console.log('Clearing non-existing creep memory:', name);
