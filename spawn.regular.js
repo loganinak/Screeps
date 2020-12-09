@@ -7,12 +7,15 @@ var spawnRegular = {
     const spawn = Game.spawns[name];
 
     // Count creeps of each type
-    let count = {};
+    let count = {
+      "harvester": 0,
+      "upgrader": 0,
+      "builder": 0,
+      "scout": 0};
+
     Object.keys(roles).forEach((role) => {
       const creepsOfRole = _.filter(Game.creeps, (creep) => creep.memory.role == role);
-      count.push({
-        role: creepsOfRole.length
-      })
+      count[role] = creepsOfRole.length;
     });
     console.log("Creeps of each type: " + count);
 
