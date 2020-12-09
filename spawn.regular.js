@@ -23,8 +23,8 @@ var spawnRegular = {
     const constructionCount = spawn.room.find(FIND_CONSTRUCTION_SITES).length;
 
     // Get energy values
-    const energyAvailable = Game.spawns[spawnName].room.energyAvailable;
-    const energyCapacityAvailable = Game.spawns[spawnName].room.energyCapacityAvailable
+    const energyAvailable = Game.spawns[name].room.energyAvailable;
+    const energyCapacityAvailable = Game.spawns[name].room.energyCapacityAvailable
 
     // Decide which creep to spawn
     if (!spawn.spawning && count["harvester"] < Memory.harvesters && energyAvailable >= 300) {
