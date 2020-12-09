@@ -1,5 +1,5 @@
 const debug = true;
-let roleGeneric = require("role.generic");
+let creepFunctions = require("role.generic");
 
 var roleUpgrader = {
 
@@ -24,10 +24,10 @@ var roleUpgrader = {
     // run state
     switch (creep.memory.state) {
       case "upgrading":
-        roleGeneric.upgrading(creep);
+        creepFunctions.upgrading(creep);
         break;
       case "harvesting":
-        roleGeneric.harvesting(creep);
+        creepFunctions.harvesting(creep);
         break;
       default:
         console.log("upgrader state error")
