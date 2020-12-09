@@ -15,7 +15,7 @@ var roleHarvester = {
       creep.memory.state = "harvesting";
       creep.say("harvest");
     }
-    if (creep.memory.state == "harvesting" && creep.store.getfreecapacity() == 0) {
+    if (creep.memory.state == "harvesting" && creep.store.getFreeCapacity() == 0) {
       creep.memory.state = "refueling";
       creep.say("refuel");
     }
