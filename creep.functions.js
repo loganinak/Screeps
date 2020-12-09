@@ -1,6 +1,6 @@
 const debug = true;
 
-var roleGeneric = {
+let creepFunctions = {
   harvesting: (creep) => {
     // Find sources
     const sources = creep.room.find(FIND_SOURCES);
@@ -104,4 +104,4 @@ var roleGeneric = {
   }
 };
 
-module.exports = roleGeneric;
+module.exports = creepFunctions;

@@ -1,5 +1,5 @@
 const debug = true;
-let creepFunctions = require("role.generic");
+let creepFunctions = require("creep.functions");
 
 var roleHarvester = {
 
@@ -11,14 +11,22 @@ var roleHarvester = {
       return;
     }
 
-    // check state
-    if (creep.memory.state == "refueling" && creep.store[RESOURCE_ENERGY] == 0) {
-      creep.memory.state = "harvesting";
-      creep.say("harvest");
-    }
-    if (creep.memory.state == "harvesting" && creep.store.getFreeCapacity() == 0) {
-      creep.memory.state = "refueling";
-      creep.say("refuel");
+    // Check if the state needs to be changed
+    switch (creep.memory.state) {
+      case "refueling":
+        if (creep.store[RESOURCE_ENERGY] == 0) {
+          creep.memory.state = "harvesting";
+          creep.say("harvest");
+        }
+        break;
+      case "harvesting":
+        if (creep.store.getFreeCapacity() == 0) {
+          creep.memory.state = "refueling";
+          creep.say("refuel");
+        }
+        break;
+      default:
+        console.log("Harvester change state error");
     }
 
     switch (creep.memory.state) {

@@ -30,7 +30,7 @@ module.exports.loop = () => {
   creeps.map(creepName => {
     if (!Game.creeps[creepName]) {
       delete Memory.creeps[creepName];
-      console.log('Clearing non-existing creep memory:', name);
+      console.log('Clearing non-existing creep memory:', creepName);
     }
   });
 

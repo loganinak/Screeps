@@ -1,5 +1,5 @@
 const debug = true;
-let creepFunctions = require("role.generic");
+let creepFunctions = require("creep.functions");
 
 var roleBuilder = {
 
@@ -11,14 +11,22 @@ var roleBuilder = {
       return;
     }
 
-    // check state
-    if (creep.memory.state == "building" && creep.store[RESOURCE_ENERGY] == 0) {
-      creep.memory.state = "harvesting";
-      creep.say('🔄 harvest');
-    }
-    if (creep.memory.state == "harvesting" && creep.store.getFreeCapacity() == 0) {
-      creep.memory.state = "building";
-      creep.say('🚧 build');
+    // check if state needs to be changed
+    switch (creep.memory.state) {
+      case "building":
+        if (creep.store[RESOURCE_ENERGY] == 0) {
+          creep.memory.state = "harvesting";
+          creep.say('🔄 harvest');
+        }
+        break;
+      case "harvesting":
+        if (creep.store.getFreeCapacity() == 0) {
+          creep.memory.state = "building";
+          creep.say('🚧 build');
+        }
+        break;
+      default:
+        system.log("Builder change state error")
     }
 
     // run state
