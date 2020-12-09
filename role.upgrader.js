@@ -1,4 +1,5 @@
 const debug = true;
+let creepFunctions = require("role.generic");
 
 var roleUpgrader = {
 
@@ -6,7 +7,7 @@ var roleUpgrader = {
   run: (creepName) => {
     const creep = Game.creeps[creepName];
 
-    if(creep.spawning) {
+    if (creep.spawning) {
       return;
     }
 
@@ -23,10 +24,10 @@ var roleUpgrader = {
     // run state
     switch (creep.memory.state) {
       case "upgrading":
-        upgrading(creep);
+        creepFunctions.upgrading(creep);
         break;
       case "harvesting":
-        harvesting(creep);
+        creepFunctions.harvesting(creep);
         break;
       default:
         console.log("upgrader state error")
@@ -36,41 +37,4 @@ var roleUpgrader = {
   }
 };
 
-function upgrading(creep) {
-  if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-    creep.moveTo(creep.room.controller, {
-      visualizePathStyle: {
-        stroke: '#ffffff'
-      }
-    });
-  }
-}
-
-function harvesting(creep) {
-  // Find sources
-  const sources = creep.room.find(FIND_SOURCES);
-
-  // Choose Source
-  const source = sources[creep.name.charAt(creep.name.length - 1) % sources.length];
-
-  // Try to harvest source
-  const harvestResult = creep.harvest(source);
-
-  // Move towards source if not in range
-  if (harvestResult == ERR_NOT_IN_RANGE) {
-    const moveToResult = creep.moveTo(source, {
-        visualizePathStyle: {
-          stroke: '#ffaa00'
-        }
-      });
-      // Record Errors
-      if (debug && moveToResult != OK && moveToResult != ERR_TIRED) {
-        console.log("Building moveTo Error: " + moveToResult);
-      }
-    }
-    else if (debug && harvestResult != OK) {
-      console.log("Builder harvesting Error: " + harvestResult);
-    }
-  }
-
-  module.exports = roleUpgrader;
+module.exports = roleUpgrader;
