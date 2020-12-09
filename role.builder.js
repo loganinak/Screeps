@@ -73,7 +73,7 @@ function harvesting(creep) {
 
   // Move towards source if not in range
   if (harvestResult == ERR_NOT_IN_RANGE) {
-    const moveToResult = creep.moveTo(sources[source, {
+    const moveToResult = creep.moveTo(sources[source], {
         visualizePathStyle: {
           stroke: '#ffaa00'
         }
