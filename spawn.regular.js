@@ -60,7 +60,8 @@ function spawnCreep(role, spawn, bodyRatio) {
     memory: {
       role: role,
       idleTime: 0,
-      timeAlive: 0
+      timeAlive: 0,
+      state: "harvesting"
     }
   });
 
