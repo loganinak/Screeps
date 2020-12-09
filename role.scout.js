@@ -1,4 +1,3 @@
-
 const debug = true;
 
 var roleUpgrader = {
