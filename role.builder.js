@@ -3,7 +3,8 @@ const debug = true;
 var roleBuilder = {
 
   /** @param {Creep} creep **/
-  run: function(creep) {
+  run: function(creepName) {
+    const creep = creepName;
     // check state
     if (creep.memory.state == "building" && creep.store[RESOURCE_ENERGY] == 0) {
       creep.memory.state = "harvesting";
@@ -73,7 +74,7 @@ function harvesting(creep) {
 
   // Move towards source if not in range
   if (harvestResult == ERR_NOT_IN_RANGE) {
-    const moveToResult = creep.moveTo(sources[source], {
+    const moveToResult = creep.moveTo(source, {
         visualizePathStyle: {
           stroke: '#ffaa00'
         }

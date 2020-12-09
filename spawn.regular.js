@@ -17,7 +17,6 @@ var spawnRegular = {
       const creepsOfRole = _.filter(Game.creeps, (creep) => creep.memory.role == role);
       count[role] = creepsOfRole.length;
     });
-    console.log("Creeps of each type: " + count);
 
     // Count construction
     const constructionCount = spawn.room.find(FIND_CONSTRUCTION_SITES).length;
