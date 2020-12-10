@@ -40,7 +40,7 @@ var roleHarvester = {
         ) {
           creep.memory.state = "idling";
           creep.say("idle");
-        } else if (creep.store.getFreeCapacity == 0 &&
+        } else if (creep.store.getFreeCapacity() == 0 &&
           numberOfRefuelingTargets > 0
         ) {
           creep.memory.state = "refueling";
