@@ -1,5 +1,5 @@
 let functionsSelectors = {
-  refuelingTargets: (structure) => {
+  refuelingTargets: (creep) => {
     return creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.structureType == STRUCTURE_EXTENSION ||

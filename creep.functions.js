@@ -1,5 +1,5 @@
 const debug = true;
-let functionsSelectors = require("functions.selectors");
+let selectors = require("functions.selectors");
 
 let creepFunctions = {
   harvesting: (creep) => {
@@ -70,7 +70,7 @@ let creepFunctions = {
   },
   refueling: (creep) => {
     // Get refueling targets
-    const targets = functionsSelectors.refuelingTargets(creep);
+    const targets = selectors.refuelingTargets(creep);
     // Try to transfer to target
     const transferResult = creep.transfer(getRandTarget(creep, targets), RESOURCE_ENERGY)
 
