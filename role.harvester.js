@@ -1,5 +1,6 @@
 const debug = true;
 let creepFunctions = require("creep.functions");
+let targetSelectors = require("functions.selectors");
 
 var roleHarvester = {
 
@@ -11,16 +12,43 @@ var roleHarvester = {
       return;
     }
 
+
+    let numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep).length;
+
     // Check if the state needs to be changed
     switch (creep.memory.state) {
       case "refueling":
-        if (creep.store[RESOURCE_ENERGY] == 0) {
+        if (
+          numberOfRefuelingTargets == 0 &&
+          creep.store.getFreeCapacity() > 0 ||
+          creep.store[RESOURCE_ENERGY] == 0
+        ) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
+        } else if (
+          numberOfRefuelingTargets == 0 &&
+          creep.store.getFreeCapacity() == 0
+        ) {
+          creep.memory.state = "idling";
+          creep.say("idle");
         }
         break;
       case "harvesting":
-        if (creep.store.getFreeCapacity() == 0) {
+        if (
+          creep.store.getFreeCapacity() == 0 &&
+          numberOfRefuelingTargets == 0
+        ) {
+          creep.memory.state = "idling";
+          creep.say("idle");
+        } else if (creep.store.getFreeCapacity == 0 &&
+          numberOfRefuelingTargets > 0
+        ) {
+          creep.memory.state = "refueling";
+          creep.say("refuel");
+        }
+        break;
+      case "idling":
+        if (numberOfRefuelingTargets > 0) {
           creep.memory.state = "refueling";
           creep.say("refuel");
         }
