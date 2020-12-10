@@ -56,7 +56,7 @@ var spawnRegular = {
     ) {
       spawnCreep("scout", spawn, roles["scout"]);
     } else {
-      console.log("spawn.regular decision error"
+      console.log("spawn.regular decision error" +
         "energyAvailable: " + energyAvailable +
         ", spawnEnergyAvailable: " + spawnEnergyAvailable +
         ", energyCapacityAvailable: " + energyCapacityAvailable +
