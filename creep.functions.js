@@ -88,11 +88,16 @@ let creepFunctions = {
     }
   },
   idling: (creep) => {
-    creep.moveTo(20, 13, {
-      visualizePathStyle: {
-        stroke: '#ff00ff'
-      }
-    });
+    const repairTarget = getRandTarget(selectors);
+    const repairResult = creep.repair(repairTarget);
+
+    if(repairResult == ERR_NOT_IN_RANGE) {
+      creep.moveTo(repairTarget.pos, {
+        visualizePathStyle: {
+          stroke: '#ff9515'
+        }
+      });
+    }
   },
   renewing: (creep) => {
     const spawns = creep.room.find(FIND_MY_SPAWNS);
