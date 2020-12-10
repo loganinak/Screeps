@@ -24,13 +24,14 @@ var spawnRegular = {
 
     // Get energy values
     const energyAvailable = Game.spawns[name].room.energyAvailable;
+    const spawnEnergyAvailable = Game.spawns[name].store.getFreeCapacity;
     const energyCapacityAvailable = Game.spawns[name].room.energyCapacityAvailable
 
     // Decide which creep to spawn
     if (
       !spawn.spawning &&
       count["harvester"] < Memory.harvesters &&
-      energyAvailable >= 300
+      spawnEnergyAvailable >= 300
     ) {
       spawnCreep("harvester", spawn, roles["harvester"]);
     } else if (
