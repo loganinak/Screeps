@@ -25,7 +25,7 @@ module.exports.loop = () => {
   }
 
   // Set out roles and max energy usage (TODO)
-  const creeps = Object.keys(Memory.creeps);
+  let creeps = Object.keys(Memory.creeps);
   const spawns = Object.keys(Game.spawns);
 
   // Cleanup memory
