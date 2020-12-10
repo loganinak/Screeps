@@ -15,7 +15,7 @@ let functionsSelectors = {
   repairTargets: (creep) => {
     return creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
-        return structure.structureType == STRUCTURE_ROAD;
+        return structure.structureType == STRUCTURE_ROAD && structure.ticksToDecay < 100;
       }
     });
   }
