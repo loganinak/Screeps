@@ -13,7 +13,7 @@ let creepFunctions = {
     const harvestResult = creep.harvest(source);
 
     // Move towards source if not in range
-    if (harvestResult == ERR_NOT_IN_RANGE) {
+    if (harvestResult == ERR_NOT_IN_RANGE || ERR_NOT_ENOUGH_RESOURCES) {
       const moveToResult = creep.moveTo(source, {
         visualizePathStyle: {
           stroke: '#ffaa00'
