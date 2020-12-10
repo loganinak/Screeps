@@ -98,7 +98,7 @@ let creepFunctions = {
     const spawns = creep.room.find(FIND_MY_SPAWNS);
     const spawn = getRandTarget(creep, spawns);
 
-    renewCreepResult = spawn.renewCreep(creep);
+    const renewCreepResult = spawn.renewCreep(creep);
     if (renewCreepResult == ERR_NOT_IN_RANGE) {
       const moveToResult = creep.moveTo(spawn, {
         visualizePathStyle: {
