@@ -1,4 +1,5 @@
 const debug = true;
+let functionsSelectors = require("functions.selectors");
 
 let creepFunctions = {
   harvesting: (creep) => {
@@ -6,7 +7,7 @@ let creepFunctions = {
     const sources = creep.room.find(FIND_SOURCES);
 
     // Choose Source
-    const source = sources[creep.name.charAt(creep.name.length - 1) % sources.length];
+    const source = getRandTarget(creep, sources);
 
     // Try to harvest source
     const harvestResult = creep.harvest(source);
@@ -31,13 +32,13 @@ let creepFunctions = {
     const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
     // Check for valid build target
-    if (targets.length > 0 && targets[0].my) {
+    if (targets.length > 0 && targets[getRandTarget(creep, targets)].my) {
       // Try to build
-      const buildResult = creep.build(targets[0]);
+      const buildResult = creep.build(targets[getRandTarget(creep, targets)]);
 
       //  Try to move towards target if not in range
       if (buildResult == ERR_NOT_IN_RANGE) {
-        const moveToResult = creep.moveTo(targets[0], {
+        const moveToResult = creep.moveTo(targets[getRandTarget(creep, targets)], {
           visualizePathStyle: {
             stroke: '#ffffff'
           }
@@ -71,40 +72,31 @@ let creepFunctions = {
     // Get refueling targets
     const targets = creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
-        return (structure.structureType == STRUCTURE_EXTENSION ||
-            structure.structureType == STRUCTURE_SPAWN ||
-            structure.structureType == STRUCTURE_TOWER ||
-            structure.structureType == STRUCTURE_CONTAINER ||
-            structure.structureType == STRUCTURE_STORAGE
-          ) &&
-          structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+        return functionsSelectors.refuelingTargets(structure);
       }
     });
 
     // Try to transfer to target
-    const transferResult = creep.transfer(targets[0], RESOURCE_ENERGY)
+    const transferResult = creep.transfer(getRandTarget(creep, targets), RESOURCE_ENERGY)
 
     // Try to move to target if not in arnge
     if (transferResult == ERR_NOT_IN_RANGE) {
-      const moveToResult = creep.moveTo(targets[0], {
+      const moveToResult = creep.moveTo(getRandTarget(creep, targets), {
         visualizePathStyle: {
           stroke: '#ffffff'
         }
       });
 
-      if (debug && moveToResult != 0 && moveToResult != -11) {
+      if (debug && moveToResult != OK && moveToResult != -ERR_TIRED) {
         console.log("Refueling moveTo error: " + moveToResult);
       }
-    } else if (transferResult != OK && targets.length > 0) {
-      console.log("Refueling transfer error: " + result);
-      creep.moveTo(18, 21, {
-        visualizePathStyle: {
-          stroke: '#0000ff'
-        }
-      });
-      creep.memory.idleTime += 1;
     }
   }
 };
+
+// Choose a random target from a list based on name
+function getRandTarget(creep, possibleTargets) {
+  return possibleTargets[creep.name.charAt(creep.name.length - 1) % possibleTargets.length];
+}
 
 module.exports = creepFunctions;
