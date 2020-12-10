@@ -70,7 +70,7 @@ let creepFunctions = {
   },
   refueling: (creep) => {
     // Get refueling targets
-    const targets = refuelingTargets(creep);
+    const targets = functionsSelectors.refuelingTargets(creep);
     // Try to transfer to target
     const transferResult = creep.transfer(getRandTarget(creep, targets), RESOURCE_ENERGY)
 
