@@ -69,7 +69,10 @@ var roleHarvester = {
         }
         break;
       case "renewing":
-        if(creep.ticksToLive > 1300 && numberOfRefuelingTargets > 0) {
+        if (
+          creep.ticksToLive > 1300 &&
+          numberOfRefuelingTargets > 0
+        ) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
         }
@@ -87,8 +90,10 @@ var roleHarvester = {
         break;
       case "idling":
         creepFunctions.idling(creep);
+        break;
       case "renewing":
         creepFunctions.renewing(creep);
+        break;
       default:
         console.log("Harvester State Error");
     }
