@@ -37,6 +37,7 @@ var spawnRegular = {
       !spawn.spawning &&
       count["upgrader"] < Memory.upgraders &&
       energyAvailable == energyCapacityAvailable
+      && energyAvailable >= 300
     ) {
       spawnCreep("upgrader", spawn, roles["upgrader"]);
     } else if (
@@ -44,6 +45,7 @@ var spawnRegular = {
       constructionCount > 0 &&
       count["builder"] < Memory.builders &&
       energyAvailable == energyCapacityAvailable
+      && engergyAvailable >= 300
     ) {
       spawnCreep("builder", spawn, roles["builder"]);
     } else if (
