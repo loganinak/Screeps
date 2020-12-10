@@ -69,7 +69,7 @@ var roleHarvester = {
         }
         break;
       case "renewing":
-        if(creep.ticksToLive > 1300) {
+        if(creep.ticksToLive > 1300 && numberOfRefuelingTargets > 0) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
         }
