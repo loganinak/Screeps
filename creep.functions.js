@@ -70,12 +70,7 @@ let creepFunctions = {
   },
   refueling: (creep) => {
     // Get refueling targets
-    const targets = creep.room.find(FIND_STRUCTURES, {
-      filter: (structure) => {
-        return functionsSelectors.refuelingTargets(structure);
-      }
-    });
-
+    const targets = refuelingTargets(creep);
     // Try to transfer to target
     const transferResult = creep.transfer(getRandTarget(creep, targets), RESOURCE_ENERGY)
 
