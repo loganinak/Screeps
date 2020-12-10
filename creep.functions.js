@@ -88,7 +88,7 @@ let creepFunctions = {
     }
   },
   idling: (creep) => {
-    const repairTarget = getRandTarget(selectors);
+    const repairTarget = getRandTarget(creep, selectors.repairTargets(creep));
     const repairResult = creep.repair(repairTarget);
 
     if(repairResult == ERR_NOT_IN_RANGE) {
