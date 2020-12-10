@@ -17,12 +17,13 @@ module.exports.loop = () => {
 
   if (!Memory.roles) {
     Memory.roles = {
-    "harvester": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-    "upgrader": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-    "builder": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-    "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
+      "harvester": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "upgrader": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "builder": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
+    }
   }
-
+  
   // Set out roles and max energy usage (TODO)
   const creeps = Object.keys(Memory.creeps);
   const spawns = Object.keys(Game.spawns);
