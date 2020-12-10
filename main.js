@@ -23,7 +23,7 @@ module.exports.loop = () => {
       "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
     }
   }
-  
+
   // Set out roles and max energy usage (TODO)
   const creeps = Object.keys(Memory.creeps);
   const spawns = Object.keys(Game.spawns);
@@ -35,6 +35,8 @@ module.exports.loop = () => {
       console.log('Clearing non-existing creep memory:', creepName);
     }
   });
+
+  creeps = Object.keys(Memory.creeps);
 
   // For now assume there is only one room
   let roomName = Game.spawns[spawns[0]].room.name;
