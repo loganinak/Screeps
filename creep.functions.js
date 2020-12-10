@@ -93,7 +93,20 @@ let creepFunctions = {
           stroke: '#ff00ff'
         }
       });
-  }
+  },
+  renewing: (creep) => {
+    const spawns = creep.room.find(FIND_MY_SPAWNS);
+    const spawn = getRandTarget(creep, spawns);
+
+    renewCreepResult = spawn.renewCreep(creep);
+    if(renewCreepResult == ERR_NOT_IN_RANGE){
+      const moveToResult = creep.moveTo(spawn, {
+        visualizePathStyle: {
+          stroke: '#0000ff'
+        }
+      });
+    }
+  })
 };
 
 // Choose a random target from a list based on name

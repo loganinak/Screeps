@@ -31,6 +31,11 @@ var roleHarvester = {
         ) {
           creep.memory.state = "idling";
           creep.say("idle");
+        } else if (
+          creep.ticksToLive < 150
+        ) {
+          creep.memory.state = "renewing";
+          creep.say("renew");
         }
         break;
       case "harvesting":
@@ -45,14 +50,29 @@ var roleHarvester = {
         ) {
           creep.memory.state = "refueling";
           creep.say("refuel");
+        } else if (
+          creep.ticksToLive < 150
+        ) {
+          creep.memory.state = "renewing";
+          creep.say("renew");
         }
         break;
       case "idling":
         if (numberOfRefuelingTargets > 0) {
           creep.memory.state = "refueling";
           creep.say("refuel");
+        } else if (
+          creep.ticksToLive < 150
+        ) {
+          creep.memory.state = "renewing";
+          creep.say("renew");
         }
         break;
+      case "renewing":
+        if(creep.ticksToLive == 1500) {  
+          creep.memory.state = "harvesting";
+          creep.say("harvest");
+        }
       default:
         console.log("Harvester change state error");
     }
@@ -66,6 +86,8 @@ var roleHarvester = {
         break;
       case "idling":
         creepFunctions.idling(creep);
+      case "renewing":
+        creepFunctions.renewing(creep);
       default:
         console.log("Harvester State Error");
     }
