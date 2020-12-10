@@ -55,13 +55,13 @@ var spawnRegular = {
       energyAvailable > roles["scout"][8]
     ) {
       spawnCreep("scout", spawn, roles["scout"]);
-    } else {
-      console.log("spawn.regular decision error" +
-        "energyAvailable: " + energyAvailable +
-        ", spawnEnergyAvailable: " + spawnEnergyAvailable +
-        ", energyCapacityAvailable: " + energyCapacityAvailable +
-        ", constructionCount: " + constructionCount);
-    }
+    } //else {
+      //  console.log("spawn.regular decision error" +
+      //  "energyAvailable: " + energyAvailable +
+      //  ", spawnEnergyAvailable: " + spawnEnergyAvailable +
+      //  ", energyCapacityAvailable: " + energyCapacityAvailable +
+      //  ", constructionCount: " + constructionCount);
+    //}
 
     if (Game.spawns[name].spawning) {
       var spawningCreep = Game.creeps[Game.spawns[name].spawning.name];
