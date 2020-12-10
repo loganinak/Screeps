@@ -86,6 +86,13 @@ let creepFunctions = {
         console.log("Refueling moveTo error: " + moveToResult);
       }
     }
+  },
+  idling: (creep) => {
+    creep.moveTo(20, 13, {
+        visualizePathStyle: {
+          stroke: '#ff00ff'
+        }
+      });
   }
 };
 

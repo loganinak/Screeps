@@ -64,6 +64,8 @@ var roleHarvester = {
       case "harvesting":
         creepFunctions.harvesting(creep);
         break;
+      case "idling":
+        creepFunctions.idling(creep);
       default:
         console.log("Harvester State Error");
     }
