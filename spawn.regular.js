@@ -169,5 +169,4 @@ function optimizeCreepBody(roleRatios, spawn) {
 
   return parts
 }
-
 module.exports = spawnRegular;

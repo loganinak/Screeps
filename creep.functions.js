@@ -82,7 +82,7 @@ let creepFunctions = {
         }
       });
 
-      if (debug && moveToResult != OK && moveToResult != -ERR_TIRED) {
+      if (debug && moveToResult != OK && moveToResult != ERR_TIRED) {
         console.log("Refueling moveTo error: " + moveToResult);
       }
     }
