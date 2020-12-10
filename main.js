@@ -15,14 +15,15 @@ module.exports.loop = () => {
     console.log("Initialized creep targets in memory");
   }
 
-  // Set out roles and max energy usage (TODO)
-  const roles = {
-    "harvester": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
-    "upgrader": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
-    "builder": [2, 1, 1, 0, 0, 0, 0, 0, 10000],
+  if (!Memory.roles) {
+    Memory.roles = {
+    "harvester": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+    "upgrader": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+    "builder": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
     "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
-  };
+  }
 
+  // Set out roles and max energy usage (TODO)
   const creeps = Object.keys(Memory.creeps);
   const spawns = Object.keys(Game.spawns);
 
@@ -42,7 +43,7 @@ module.exports.loop = () => {
 
   // Process spawners
   spawns.map(spawnName => {
-    spawnRegular.run(spawnName, roles);
+    spawnRegular.run(spawnName, Memory.roles);
   });
 
   // Process creeps
