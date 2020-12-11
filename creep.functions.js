@@ -71,12 +71,15 @@ let creepFunctions = {
   refueling: (creep) => {
     // Get refueling targets
     const targets = selectors.refuelingTargets(creep);
+
+    // Find the closest
+    const closestTarget = creep.pos.findClosestByPath(targets);
     // Try to transfer to target
-    const transferResult = creep.transfer(getRandTarget(creep, targets), RESOURCE_ENERGY)
+    const transferResult = creep.transfer(closestTarget, RESOURCE_ENERGY)
 
     // Try to move to target if not in arnge
     if (transferResult == ERR_NOT_IN_RANGE) {
-      const moveToResult = creep.moveTo(getRandTarget(creep, targets), {
+      const moveToResult = creep.moveTo(closestTarget, {
         visualizePathStyle: {
           stroke: '#ffffff'
         }
@@ -91,7 +94,7 @@ let creepFunctions = {
     const repairTarget = getRandTarget(creep, selectors.repairTargets(creep));
     const repairResult = creep.repair(repairTarget);
 
-    if(repairResult == ERR_NOT_IN_RANGE) {
+    if (repairResult == ERR_NOT_IN_RANGE) {
       creep.moveTo(repairTarget.pos, {
         visualizePathStyle: {
           stroke: '#ff9515'
