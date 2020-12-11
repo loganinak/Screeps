@@ -13,7 +13,7 @@ let functionsSelectors = {
   repairTargets: (creep) => {
     return creep.room.find(FIND_STRUCTURES, {
       filter: (structure) => {
-        return structure.structureType == STRUCTURE_ROAD && structure.ticksToDecay < 100;
+        return structure.structureType == STRUCTURE_ROAD && structure.hits / structure.hitsMax < 0.5;
       }
     });
   }

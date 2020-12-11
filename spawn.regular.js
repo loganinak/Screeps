@@ -37,16 +37,16 @@ var spawnRegular = {
     } else if (
       !spawn.spawning &&
       count["upgrader"] < Memory.upgraders &&
-      energyAvailable == energyCapacityAvailable
-      && energyAvailable >= 300
+      energyAvailable == energyCapacityAvailable &&
+      energyAvailable >= 300
     ) {
       spawnCreep("upgrader", spawn, roles["upgrader"]);
     } else if (
       !spawn.spawning &&
       constructionCount > 0 &&
       count["builder"] < Memory.builders &&
-      energyAvailable == energyCapacityAvailable
-      && energyAvailable >= 300
+      energyAvailable == energyCapacityAvailable &&
+      energyAvailable >= 300
     ) {
       spawnCreep("builder", spawn, roles["builder"]);
     } else if (
@@ -56,11 +56,11 @@ var spawnRegular = {
     ) {
       spawnCreep("scout", spawn, roles["scout"]);
     } //else {
-      //  console.log("spawn.regular decision error" +
-      //  "energyAvailable: " + energyAvailable +
-      //  ", spawnEnergyAvailable: " + spawnEnergyAvailable +
-      //  ", energyCapacityAvailable: " + energyCapacityAvailable +
-      //  ", constructionCount: " + constructionCount);
+    //  console.log("spawn.regular decision error" +
+    //  "energyAvailable: " + energyAvailable +
+    //  ", spawnEnergyAvailable: " + spawnEnergyAvailable +
+    //  ", energyCapacityAvailable: " + energyCapacityAvailable +
+    //  ", constructionCount: " + constructionCount);
     //}
 
     if (Game.spawns[name].spawning) {
