@@ -13,21 +13,24 @@ var roleHarvester = {
     }
 
 
-    let numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep).length;
+    const numberOfRepairTargets = targetSelectors.repairTargets(creep).length;
+    const numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep).length;
+    const freeCapacity = creep.store.getFreeCapacity();
+    const energyStored = creep.store[RESOURCE_ENERGY];
 
     // Check if the state needs to be changed
     switch (creep.memory.state) {
       case "refueling":
         if (
           numberOfRefuelingTargets == 0 &&
-          creep.store.getFreeCapacity() > 0 ||
-          creep.store[RESOURCE_ENERGY] == 0
+          freeCapacity > 0 ||
+          energyStored == 0
         ) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
         } else if (
           numberOfRefuelingTargets == 0 &&
-          creep.store.getFreeCapacity() == 0
+          freeCapacity == 0
         ) {
           creep.memory.state = "idling";
           creep.say("idle");
@@ -40,12 +43,12 @@ var roleHarvester = {
         break;
       case "harvesting":
         if (
-          creep.store.getFreeCapacity() == 0 &&
+          freeCapacity == 0 &&
           numberOfRefuelingTargets == 0
         ) {
           creep.memory.state = "idling";
           creep.say("idle");
-        } else if (creep.store.getFreeCapacity() == 0 &&
+        } else if (freeCapacity == 0 &&
           numberOfRefuelingTargets > 0
         ) {
           creep.memory.state = "refueling";
@@ -66,19 +69,26 @@ var roleHarvester = {
         ) {
           creep.memory.state = "renewing";
           creep.say("renew");
-        }
-        break;
-      case "renewing":
-        if (
-          creep.ticksToLive > 1300 &&
-          numberOfRefuelingTargets > 0
+          break;
+        } else if (
+          freeCapacity > 0 &&
+          numberOfRepairTargets == 0
         ) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
+          break;
         }
-        break;
-      default:
-        console.log("Harvester change state error");
+        case "renewing":
+          if (
+            creep.ticksToLive > 1300 &&
+            numberOfRefuelingTargets > 0
+          ) {
+            creep.memory.state = "harvesting";
+            creep.say("harvest");
+          }
+          break;
+        default:
+          console.log("Harvester change state error");
     }
 
     switch (creep.memory.state) {
