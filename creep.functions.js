@@ -32,13 +32,13 @@ let creepFunctions = {
     const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
     // Check for valid build target
-    if (targets.length > 0 && targets[getRandTarget(creep, targets)].my) {
+    if (targets.length > 0) {
       // Try to build
-      const buildResult = creep.build(targets[getRandTarget(creep, targets)]);
+      const buildResult = creep.build(getRandTarget(creep, targets));
 
       //  Try to move towards target if not in range
       if (buildResult == ERR_NOT_IN_RANGE) {
-        const moveToResult = creep.moveTo(targets[getRandTarget(creep, targets)], {
+        const moveToResult = creep.moveTo(getRandTarget(creep, targets), {
           visualizePathStyle: {
             stroke: '#ffffff'
           }
