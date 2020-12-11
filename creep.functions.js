@@ -20,7 +20,7 @@ let creepFunctions = {
         }
       });
       // Record Errors
-      if (debug && moveToResult != OK && moveToResult != ERR_TIRED) {
+      if (debug && moveToResult != OK && moveToResult != ERR_TIRED && moveToResult != ERR_NO_PATH) {
         console.log("harvesting moveTo Error: " + moveToResult);
       }
     } else if (debug && harvestResult != OK) {
