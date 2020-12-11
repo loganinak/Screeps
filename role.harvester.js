@@ -69,7 +69,6 @@ var roleHarvester = {
         ) {
           creep.memory.state = "renewing";
           creep.say("renew");
-          break;
         } else if (
           freeCapacity > 0 &&
           numberOfRepairTargets == 0
