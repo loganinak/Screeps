@@ -79,7 +79,7 @@ var spawnRegular = {
 function spawnCreep(role, spawn, bodyRatio) {
   // Make creep information
   const newName = role + Game.time;
-  const bodyParts = optimizeCreepBody(bodyRatio, spawn);
+  const [bodyParts, level] = optimizeCreepBody(bodyRatio, spawn);
 
   // Spawn creep
   const result = spawn.spawnCreep(bodyParts, newName, {
@@ -87,7 +87,8 @@ function spawnCreep(role, spawn, bodyRatio) {
       role: role,
       idleTime: 0,
       timeAlive: 0,
-      state: "harvesting"
+      state: "harvesting",
+      level: level
     }
   });
 
@@ -130,6 +131,7 @@ function optimizeCreepBody(roleRatios, spawn) {
   let parts = [];
   const spawnEnergy = spawn.room.energyAvailable;
   let energyUsed = 0;
+  let level = 0;
   // console.log("spawnEnergy: " + spawnEnergy);
 
   // figure out Total and cost
@@ -148,6 +150,7 @@ function optimizeCreepBody(roleRatios, spawn) {
 
     // If there is energy left and adding another ratio will not make it go over maxEnergy
     if (energyLeft >= ratioCost && ratioCost + energyUsed <= maxEnergy) {
+      level += 1;
       // Add the amount from the ratios array
       Object.keys(ratios).forEach((partType) => {
         if (ratios[partType] > 0) {
@@ -160,20 +163,9 @@ function optimizeCreepBody(roleRatios, spawn) {
 
       // Keep track of energy
       energyUsed += ratioCost;
-
-    } else {
-      // Add what can fit
-      Object.keys(ratios).forEach((partType) => {
-        if (partCost[partType] <= energyLeft && energyUsed + partCost[partType] < maxEnergy) {
-          parts.push(partType);
-          energyUsed = energyUsed + partCost[partType];
-          energyLeft = spawnEnergy - energyUsed;
-        }
-      });
-      // console.log("spawnEnergy: " + spawnEnergy);
     }
   }
 
-  return parts
+  return [parts, level]
 }
 module.exports = spawnRegular;
