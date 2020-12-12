@@ -63,7 +63,7 @@ var spawnRegular = {
       spawnCreep("builder", spawn, roles["builder"]);
     } else if (
       !spawn.spawning &&
-      count["scout"] < Memory.scout &&
+      count["scout"] < Memory.scouts &&
       energyAvailable > roles["scout"][8]
     ) {
       spawnCreep("scout", spawn, roles["scout"]);
