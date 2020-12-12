@@ -92,7 +92,6 @@ function spawnCreep(role, spawn, bodyRatio) {
       role: role,
       idleTime: 0,
       timeAlive: 0,
-      state: "harvesting",
       level: level,
       randomFactor: newName.charAt(newName.length - 1)
     }
