@@ -157,7 +157,7 @@ let creepFunctions = {
     if (!creep.memory.xTarget) {
       creep.memory.xTarget = 25;
       creep.memory.yTarget = 25;
-      creep.memory.roomTarget = creep.room;
+      creep.memory.roomTarget = creep.room.name;
     }
 
     const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
