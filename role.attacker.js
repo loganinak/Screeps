@@ -2,7 +2,7 @@ const debug = true;
 let creepFunctions = require("creep.functions");
 let targetSelectors = require("functions.selectors");
 
-var roleHealer = {
+var roleAttacker = {
 
   /** @param {Creep} creep **/
   run: (creepName) => {
@@ -31,4 +31,4 @@ var roleHealer = {
   }
 };
 
-module.exports = roleMiner;
+module.exports = roleAttacker;

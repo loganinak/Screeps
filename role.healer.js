@@ -31,4 +31,4 @@ var roleHealer = {
   }
 };
 
-module.exports = roleMiner;
+module.exports = roleHealer;
