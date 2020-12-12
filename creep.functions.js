@@ -28,28 +28,39 @@ let creepFunctions = {
     }
   },
   mining: (creep) => {
-    // Find sources
-    const sources = creep.room.find(FIND_SOURCES);
+    // Find Containers
+    const containers = creep.room.find(FIND_STRUCTURES).filter((structure) => {
+      return structure.structureType == STRUCTURE_CONTAINER;
+    });
 
-    // Choose Source
-    const source = getRandTarget(creep, sources);
+    // Choose one randomly
+    const container = containers[creep.memory.randomFactor % containers.length];
 
-    // Try to harvest source
-    const harvestResult = creep.harvest(source);
+    // Check if miner is on container
+    if (countainer.pos == creep.pos) {
+      // Find sources
+      const sources = creep.room.find(FIND_SOURCES);
 
-    // Move towards source if not in range
-    if (harvestResult == ERR_NOT_IN_RANGE || ERR_NOT_ENOUGH_RESOURCES) {
-      const moveToResult = creep.moveTo(source, {
+      // Choose Source
+      const source = creep.pos.findClosestByPath(sources);
+
+      // Try to harvest source
+      const harvestResult = creep.harvest(source);
+
+      // Record errors
+      if (debug && harvestResult != OK) {
+        console.log("Mining harvest error: " + harvestResult);
+      }
+    } else {
+      const moveToResult = creep.moveTo(container, {
         visualizePathStyle: {
           stroke: '#ffaa00'
         }
       });
       // Record Errors
       if (debug && moveToResult != OK && moveToResult != ERR_TIRED && moveToResult != ERR_NO_PATH) {
-        console.log("harvesting moveTo Error: " + moveToResult);
+        console.log("Mining moveTo error: " + moveToResult);
       }
-    } else if (debug && harvestResult != OK) {
-      console.log("harvesting Error: " + harvestResult);
     }
   },
   building: (creep) => {

@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
+var roleMiner = require('role.miner');
 var spawnRegular = require('spawn.regular');
 var lastRestort = require('room.failsafe');
 var towerRegular = require('tower.regular');
@@ -13,6 +14,7 @@ module.exports.loop = () => {
     Memory.builders = 1;
     Memory.upgraders = 1;
     Memory.scouts = 0;
+    Memory.miners = 0;
     console.log("Initialized creep targets in memory");
   }
 
@@ -21,7 +23,8 @@ module.exports.loop = () => {
       "harvester": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
       "upgrader": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
       "builder": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-      "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50]
+      "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50],
+      "miner": [1, 1, 0, 0, 0, 0, 0, 0, 10000]
     }
   }
 
@@ -89,6 +92,9 @@ module.exports.loop = () => {
       case "scout":
         // Memory.scouts += roleScout.run(creep);
         roleScout.run(creepName);
+        break;
+      case "miner":
+        roleMiner.run(creepName);
         break;
       default:
         console.log("Error in creep processor");

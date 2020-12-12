@@ -11,7 +11,8 @@ var spawnRegular = {
       "harvester": 0,
       "upgrader": 0,
       "builder": 0,
-      "scout": 0
+      "scout": 0,
+      "miner": 0
     };
 
     Object.keys(roles).forEach((role) => {
@@ -37,16 +38,14 @@ var spawnRegular = {
     } else if (
       !spawn.spawning &&
       count["upgrader"] < Memory.upgraders &&
-      energyAvailable == energyCapacityAvailable &&
-      energyAvailable >= 300
+      energyAvailable == energyCapacityAvailable
     ) {
       spawnCreep("upgrader", spawn, roles["upgrader"]);
     } else if (
       !spawn.spawning &&
       constructionCount > 0 &&
       count["builder"] < Memory.builders &&
-      energyAvailable == energyCapacityAvailable &&
-      energyAvailable >= 300
+      energyAvailable == energyCapacityAvailable
     ) {
       spawnCreep("builder", spawn, roles["builder"]);
     } else if (
@@ -55,6 +54,12 @@ var spawnRegular = {
       energyAvailable > roles["scout"][8]
     ) {
       spawnCreep("scout", spawn, roles["scout"]);
+    } else if (
+      !spawn.spawning &&
+      count["builder"] < Memory.builders &&
+      energyAvailable == energyCapacityAvailable
+    ) {
+      spawnCreep("miner", spawn, roles["miner"]);
     } //else {
     //  console.log("spawn.regular decision error" +
     //  "energyAvailable: " + energyAvailable +
@@ -88,7 +93,8 @@ function spawnCreep(role, spawn, bodyRatio) {
       idleTime: 0,
       timeAlive: 0,
       state: "harvesting",
-      level: level
+      level: level,
+      randomFactor: creep.name.charAt(creep.name.length - 1)
     }
   });
 

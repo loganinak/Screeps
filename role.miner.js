@@ -13,18 +13,19 @@ var roleMiner = {
       return;
     }
 
-
-    const numberOfRepairTargets = targetSelectors.repairTargets(creep.room, 0.7).length;
-    const numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep.room).length;
-    const freeCapacity = creep.store.getFreeCapacity();
-    const energyStored = creep.store[RESOURCE_ENERGY];
-
     // Check if the state needs to be changed
     switch (creep.memory.state) {
       case "mining":
-        if
+        if (creep.ticksToLive < 150) {
+          creep.memory.state = "renewing";
+          creep.say("renewing");
+        }
         break;
       case "renewing":
+        if (creep.ticksToLive >= 1500) {
+          creep.memory.state = "ming";
+          creep.say("mining");
+        }
         break;
       default:
       console.log("Miner state error")
