@@ -5,15 +5,14 @@ let towerFunctions = require("tower.functions");
 var roleUpgrader = {
 
   /** @param {structure} structure **/
-  run: (structureName) => {
-    const tower = Game.structures[structureName];
+  run: (tower) => {
 
-    if(!Memory[structureName]) {
-      Memory[structureName] = "idling";
+    if(!Memory[tower.id]) {
+      Memory[tower.id] = "idling";
     }
 
     // Check if the state needs to be changed
-    switch (Memory[structureName]) {
+    switch (Memory[tower.id]) {
       case "idling":
         break;
       default:
@@ -21,7 +20,7 @@ var roleUpgrader = {
     }
 
     // run state
-    switch (Memory[structureName]) {
+    switch (Memory[tower.id]) {
       case "idling":
         towerFunctions.idling(tower);
         break;

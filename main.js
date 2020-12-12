@@ -4,6 +4,7 @@ var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
 var spawnRegular = require('spawn.regular');
 var lastRestort = require('room.failsafe');
+var towerRegular = require('tower.regular');
 
 module.exports.loop = () => {
   // Initialize creep targets if there are none
@@ -27,6 +28,9 @@ module.exports.loop = () => {
   // Set out roles and max energy usage (TODO)
   let creeps = Object.keys(Memory.creeps);
   const spawns = Object.keys(Game.spawns);
+  let towers = Object.values(Game.structures).filter((structure) => {
+    return structure.structureType == STRUCTURE_TOWER
+  });
 
   // Cleanup memory
   creeps.map(creepName => {
@@ -47,6 +51,11 @@ module.exports.loop = () => {
   // Process spawners
   spawns.map(spawnName => {
     spawnRegular.run(spawnName, Memory.roles);
+  });
+
+  // Process towers
+  towers.map(towerName => {
+    towerRegular.run(towerName);
   });
 
   // Process creeps
