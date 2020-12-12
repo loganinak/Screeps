@@ -44,4 +44,4 @@ var roleMiner = {
   }
 };
 
-module.exports = roleMIner;
+module.exports = roleMiner;
