@@ -160,7 +160,7 @@ let creepFunctions = {
       creep.memory.roomTarget = creep.room;
     }
 
-    const pos = new RoomPostion(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
+    const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
     const moveToResult = creep.moveTo(pos, {
       visualizePathStyle: {
         stroke: '#0000ff'
