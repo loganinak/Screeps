@@ -93,7 +93,7 @@ let creepFunctions = {
     }
   },
   idling: (creep) => {
-    const repairTarget = creep.pos.findClosestByPath(selectors.repairTargets(creep.room));
+    const repairTarget = creep.pos.findClosestByPath(selectors.repairTargets(creep.room, 0.7));
     const repairResult = creep.repair(repairTarget);
 
     if (repairResult == ERR_NOT_IN_RANGE) {

@@ -10,10 +10,10 @@ let functionsSelectors = {
       }
     });
   },
-  repairTargets: (room) => {
+  repairTargets: (room, percentDamaged) => {
     return room.find(FIND_STRUCTURES, {
       filter: (structure) => {
-        return structure.structureType == STRUCTURE_ROAD && structure.hits / structure.hitsMax < 0.9;
+        return structure.structureType == STRUCTURE_ROAD && structure.hits / structure.hitsMax <= percentDamaged;
       }
     });
   }

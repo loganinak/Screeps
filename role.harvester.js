@@ -13,7 +13,7 @@ var roleHarvester = {
     }
 
 
-    const numberOfRepairTargets = targetSelectors.repairTargets(creep).length;
+    const numberOfRepairTargets = targetSelectors.repairTargets(creep, 0.7).length;
     const numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep).length;
     const freeCapacity = creep.store.getFreeCapacity();
     const energyStored = creep.store[RESOURCE_ENERGY];
@@ -75,7 +75,7 @@ var roleHarvester = {
         ) {
           creep.memory.state = "harvesting";
           creep.say("harvest");
-        } else {  
+        } else {
           creep.memory.state = "renewing";
           creep.say("renew");
         }
