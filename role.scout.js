@@ -1,6 +1,6 @@
 const debug = true;
 
-var roleUpgrader = {
+var roleScout = {
 
   /** @param {Creep} creep **/
   run: (creepName) => {
@@ -30,3 +30,5 @@ var roleUpgrader = {
     return 0;
   }
 };
+
+module.exports = roleScout;
