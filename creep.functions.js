@@ -37,7 +37,7 @@ let creepFunctions = {
     const container = containers[creep.memory.randomFactor % containers.length];
 
     // Check if miner is on container
-    if (countainer.pos == creep.pos) {
+    if (container.pos == creep.pos) {
       // Find sources
       const sources = creep.room.find(FIND_SOURCES);
 
