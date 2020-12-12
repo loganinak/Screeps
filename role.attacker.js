@@ -23,7 +23,7 @@ var roleAttacker = {
 
     switch (creep.memory.state) {
       case "attacking":
-        // creepFunctions.attacking(creep);
+        creepFunctions.attacking(creep);
         break;
       default:
         console.log("Attacker State Error");

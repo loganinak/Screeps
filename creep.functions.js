@@ -161,9 +161,9 @@ let creepFunctions = {
   },
   scouting: (creep) => {
     if (!creep.memory.xTarget) {
-      creep.memory.xTarget = 25;
-      creep.memory.yTarget = 25;
-      creep.memory.roomTarget = creep.room.name;
+      creep.memory.xTarget = 35;
+      creep.memory.yTarget = 14;
+      creep.memory.roomTarget = "E22N54";
     }
 
     const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
@@ -201,6 +201,24 @@ let creepFunctions = {
     } else if (debug && harvestResult != OK) {
       console.log("Grabbing Error: " + harvestResult);
     }
+  },
+  attacking: (creep) => {
+    if (!creep.memory.xTarget) {
+      creep.memory.xTarget = 35;
+      creep.memory.yTarget = 14;
+      creep.memory.roomTarget = "E22N54";
+    }
+
+    const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
+
+    if(creep.pos.isEqualTo(pos)) {
+      creep.attack(creep.room.controller)
+    }
+    const moveToResult = creep.moveTo(pos, {
+      visualizePathStyle: {
+        stroke: '#0000ff'
+      }
+    });
   }
 };
 
