@@ -4,6 +4,31 @@ let selectors = require("functions.selectors");
 let creepFunctions = {
   harvesting: (creep) => {
     // Find sources
+    const sources = creep.room.find(FIND_STRUCTURES);
+
+    // Choose Source
+    const source = getRandTarget(creep, sources);
+
+    // Try to harvest source
+    const harvestResult = creep.harvest(source);
+
+    // Move towards source if not in range
+    if (harvestResult == ERR_NOT_IN_RANGE || ERR_NOT_ENOUGH_RESOURCES) {
+      const moveToResult = creep.moveTo(source, {
+        visualizePathStyle: {
+          stroke: '#ffaa00'
+        }
+      });
+      // Record Errors
+      if (debug && moveToResult != OK && moveToResult != ERR_TIRED && moveToResult != ERR_NO_PATH) {
+        console.log("harvesting moveTo Error: " + moveToResult);
+      }
+    } else if (debug && harvestResult != OK) {
+      console.log("harvesting Error: " + harvestResult);
+    }
+  },
+  mining: (creep) => {
+    // Find sources
     const sources = creep.room.find(FIND_SOURCES);
 
     // Choose Source

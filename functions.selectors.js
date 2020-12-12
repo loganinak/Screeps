@@ -16,6 +16,14 @@ let functionsSelectors = {
         return structure.structureType == STRUCTURE_ROAD && structure.hits / structure.hitsMax <= percentDamaged;
       }
     });
+  },
+  pickupTargets: (room) => {
+    return room.find(FIND_STRUCTURES, {
+      filter: (structure) => {
+        return structure.structureType == STRUCTURE_CONTAINER &&
+        structure.store[RESOURCE_ENERGY] > 0;
+      }
+    });
   }
 }
 
