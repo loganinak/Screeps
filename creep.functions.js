@@ -4,7 +4,7 @@ let selectors = require("functions.selectors");
 let creepFunctions = {
   harvesting: (creep) => {
     // Find sources
-    const sources = creep.room.find(FIND_STRUCTURES);
+    const sources = creep.room.find(FIND_SOURCES);
 
     // Choose Source
     const source = getRandTarget(creep, sources);
