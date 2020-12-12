@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleScout = require('role.scout');
 var roleMiner = require('role.miner');
+var roleRefueler = require('role.refueler');
 var roleAttacker = require('role.attacker');
 var roleHealer = require('role.healer');
 var spawnRegular = require('spawn.regular');
@@ -41,6 +42,10 @@ module.exports.loop = () => {
     initialized = false;
     Memory.healers = 0;
   }
+  if (!Memory.refuelers) {
+    initialized = false;
+    Memory.refuelers = 0;
+  }
 
   if (!initialized) {
     Memory.roles = {
@@ -50,7 +55,8 @@ module.exports.loop = () => {
       "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50],
       "miner": [1, 1, 0, 0, 0, 0, 0, 0, 10000],
       "attacker": [2, 0, 0, 1, 0, 0, 0, 1, 10000],
-      "healer": [2, 0, 0, 0, 0, 1, 0, 1, 10000]
+      "healer": [2, 0, 0, 0, 0, 1, 0, 1, 10000],
+      "refueler": [1, 0, 1, 0, 0, 0, 0, 0, 10000]
     }
   }
 
@@ -127,6 +133,9 @@ module.exports.loop = () => {
         break;
       case "healer":
         roleHealer.run(creepName);
+        break;
+      case "refueler":
+        roleRefueler.run(creepName);
         break;
       default:
         console.log("Error in creep processor");

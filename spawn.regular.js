@@ -73,6 +73,12 @@ var spawnRegular = {
       energyAvailable == energyCapacityAvailable
     ) {
       spawnCreep("miner", spawn, roles["miner"]);
+    } else if (
+      !spawn.spawning &&
+      count["refueler"] < Memory.refuelers &&
+      energyAvailable == energyCapacityAvailable
+    ) {
+      spawnCreep("refueler", spawn, roles["refueler"]);
     } //else {
     //  console.log("spawn.regular decision error" +
     //  "energyAvailable: " + energyAvailable +
