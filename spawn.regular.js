@@ -94,7 +94,7 @@ function spawnCreep(role, spawn, bodyRatio) {
       timeAlive: 0,
       state: "harvesting",
       level: level,
-      randomFactor: creep.name.charAt(creep.name.length - 1)
+      randomFactor: newName.charAt(creep.name.length - 1)
     }
   });
 
