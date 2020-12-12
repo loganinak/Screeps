@@ -1,6 +1,8 @@
+
+let selectors = require("functions.selectors");
 const towerFunctions = {
   "idling": (tower) => {
-    const repairTarget = tower.pos.findClosestByPath(selectors.repairTargets(creep));
+    const repairTarget = tower.pos.findClosestByRange(selectors.repairTargets(creep));
     const repairResult = tower.repair(repairTarget);
 
     if (repairResult != OK) {
