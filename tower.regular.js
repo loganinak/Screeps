@@ -9,11 +9,11 @@ var roleUpgrader = {
     const tower = Game.structures[structureName];
 
     if(!Memory[structureName]) {
-      Memory[structureName].state = "idling";
+      Memory[structureName] = "idling";
     }
 
     // Check if the state needs to be changed
-    switch (Memory[structureName].state) {
+    switch (Memory[structureName]) {
       case "idling":
         break;
       default:
@@ -21,7 +21,7 @@ var roleUpgrader = {
     }
 
     // run state
-    switch (creep.memory.state) {
+    switch (Memory[structureName]) {
       case "idling":
         towerFunctions.idling(tower);
         break;
