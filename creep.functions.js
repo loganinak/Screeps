@@ -179,7 +179,7 @@ let creepFunctions = {
     const source = sources[creep.memory.randomFactor % sources.length];
 
     // Try to harvest source
-    const harvestResult = creep.withdraw(source);
+    const harvestResult = creep.withdraw(source. RESOURCE_ENERGY);
 
     // Move towards source if not in range
     if (harvestResult == ERR_NOT_IN_RANGE || ERR_NOT_ENOUGH_RESOURCES) {
