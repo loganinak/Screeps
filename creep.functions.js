@@ -108,7 +108,7 @@ let creepFunctions = {
   },
   refueling: (creep) => {
     // Get refueling targets
-    const targets = selectors.refuelingTargets(creep.room);
+    let targets = selectors.refuelingTargets(creep.room);
 
     if (targets.length == 0) {
       targets = creep.room.find(FIND_STRUCTURES).filter((structure) => {
