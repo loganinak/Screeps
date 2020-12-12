@@ -8,21 +8,35 @@ var lastRestort = require('room.failsafe');
 var towerRegular = require('tower.regular');
 
 module.exports.loop = () => {
+  let initialized = true;
+
   // Initialize creep targets if there are none
   if (!Memory.harvesters) {
+    initialized = false;
     Memory.harvesters = 1;
+  }
+  if (!Memory.builders) {
+    initialized = false;
     Memory.builders = 1;
+  }
+  if (!Memory.upgraders) {
+    initialized = false;
     Memory.upgraders = 1;
+  }
+  if (!Memory.scouts) {
+    initialized = false;
     Memory.scouts = 0;
+  }
+  if (!Memory.miners) {
+    initialized = false;
     Memory.miners = 0;
-    console.log("Initialized creep targets in memory");
   }
 
-  if (!Memory.roles) {
+  if (!initialized) {
     Memory.roles = {
-      "harvester": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-      "upgrader": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
-      "builder": [3, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "harvester": [1, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "upgrader": [1, 1, 1, 0, 0, 0, 0, 0, 10000],
+      "builder": [1, 1, 1, 0, 0, 0, 0, 0, 10000],
       "scout": [1, 0, 0, 0, 0, 0, 0, 0, 50],
       "miner": [1, 1, 0, 0, 0, 0, 0, 0, 10000]
     }
