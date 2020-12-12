@@ -171,7 +171,7 @@ let creepFunctions = {
     // Find sources
     const sources = creep.room.find(FIND_STRUCTURES).filter((structure) => {
       return structure.structureType == STRUCTURE_CONTAINER &&
-      structure.store.getFreeCapacity == 0 ||
+      structure.store[RESOURCE_ENERGY] >= creep.store.getCapacity(RESOURCE_ENERGY) ||
       structure.structureType == STRUCTURE_STORAGE
     });
 
