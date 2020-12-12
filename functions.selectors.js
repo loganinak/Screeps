@@ -1,6 +1,6 @@
 let functionsSelectors = {
-  refuelingTargets: (creep) => {
-    return creep.room.find(FIND_STRUCTURES, {
+  refuelingTargets: (room) => {
+    return room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return (structure.structureType == STRUCTURE_EXTENSION ||
             structure.structureType == STRUCTURE_SPAWN ||
@@ -10,8 +10,8 @@ let functionsSelectors = {
       }
     });
   },
-  repairTargets: (creep) => {
-    return creep.room.find(FIND_STRUCTURES, {
+  repairTargets: (room) => {
+    return room.find(FIND_STRUCTURES, {
       filter: (structure) => {
         return structure.structureType == STRUCTURE_ROAD && structure.hits / structure.hitsMax < 0.9;
       }

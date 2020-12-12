@@ -72,7 +72,7 @@ let creepFunctions = {
   },
   refueling: (creep) => {
     // Get refueling targets
-    const targets = selectors.refuelingTargets(creep);
+    const targets = selectors.refuelingTargets(creep.room);
 
     // Find the closest
     const closestTarget = creep.pos.findClosestByPath(targets);
@@ -93,7 +93,7 @@ let creepFunctions = {
     }
   },
   idling: (creep) => {
-    const repairTarget = creep.pos.findClosestByPath(selectors.repairTargets(creep));
+    const repairTarget = creep.pos.findClosestByPath(selectors.repairTargets(creep.room));
     const repairResult = creep.repair(repairTarget);
 
     if (repairResult == ERR_NOT_IN_RANGE) {
