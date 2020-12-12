@@ -204,15 +204,17 @@ let creepFunctions = {
   },
   attacking: (creep) => {
     if (!creep.memory.xTarget) {
-      creep.memory.xTarget = 35;
-      creep.memory.yTarget = 14;
+      creep.memory.xTarget = 17;
+      creep.memory.yTarget = 30;
       creep.memory.roomTarget = "E22N54";
     }
 
     const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
 
     if (creep.pos.isEqualTo(pos)) {
-      creep.attack(creep.room.controller)
+      creep.attack(creep.room.find(FIND_STRUCTURES).filter((structure) => {
+        return structure.structureType == STRUCTURE_TOWER;
+      }));
     } else if (Memory.attacking) {
       const moveToResult = creep.moveTo(pos, {
         visualizePathStyle: {

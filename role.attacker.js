@@ -9,7 +9,7 @@ var roleAttacker = {
     const creep = Game.creeps[creepName];
 
     if (creep.spawning) {
-      creep.memory.state = "healing";
+      creep.memory.state = "attacking";
       return;
     }
 
