@@ -10,6 +10,7 @@ var roleMiner = {
     const creep = Game.creeps[creepName];
 
     if (creep.spawning) {
+      creep.memory.state = "mining";
       return;
     }
 

@@ -8,6 +8,7 @@ var roleUpgrader = {
     const creep = Game.creeps[creepName];
 
     if (creep.spawning) {
+      creep.memory.state = "harvesting";
       return;
     }
 
