@@ -13,8 +13,8 @@ var roleHarvester = {
     }
 
 
-    const numberOfRepairTargets = targetSelectors.repairTargets(creep, 0.7).length;
-    const numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep).length;
+    const numberOfRepairTargets = targetSelectors.repairTargets(creep.room, 0.7).length;
+    const numberOfRefuelingTargets = targetSelectors.refuelingTargets(creep.room).length;
     const freeCapacity = creep.store.getFreeCapacity();
     const energyStored = creep.store[RESOURCE_ENERGY];
 
