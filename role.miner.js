@@ -22,8 +22,8 @@ var roleMiner = {
         }
         break;
       case "renewing":
-        if (creep.ticksToLive >= 1300) {
-          creep.memory.state = "ming";
+        if (creep.ticksToLive >= 1400) {
+          creep.memory.state = "mining";
           creep.say("mining");
         }
         break;
