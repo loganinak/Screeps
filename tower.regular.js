@@ -1,6 +1,6 @@
 const debug = true;
 
-let creepFunctions = require("creep.functions");
+let towerFunctions = require("tower.functions");
 
 var roleUpgrader = {
 
@@ -23,6 +23,7 @@ var roleUpgrader = {
     // run state
     switch (creep.memory.state) {
       case "idling":
+        towerFunctions.idling(tower);
         break;
       default:
         console.log("tower state error")
