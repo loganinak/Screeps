@@ -1,4 +1,5 @@
 const debug = true;
+let creepFunctions = require("creep.functions");
 
 var roleScout = {
 
