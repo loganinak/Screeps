@@ -1,4 +1,3 @@
-
 const debug = true;
 let creepFunctions = require("creep.functions");
 let targetSelectors = require("functions.selectors");

@@ -12,7 +12,8 @@ var spawnRegular = {
       "upgrader": 0,
       "builder": 0,
       "scout": 0,
-      "miner": 0
+      "miner": 0,
+      "attacker": 0
     };
 
     Object.keys(roles).forEach((role) => {
@@ -29,7 +30,19 @@ var spawnRegular = {
     const energyCapacityAvailable = Game.spawns[name].room.energyCapacityAvailable
 
     // Decide which creep to spawn
-    if (
+    if(
+      !spawn.spawning &&
+      count["attacker"] < Memory.attackers &&
+      energyAvailable == energyCapacityAvailable
+    ) {
+      spawnCreep("attacker", spawn, roles["attacker"]);
+    } else if (
+      !spawn.spawning &&
+      count["healer"] < Memory.healers &&
+      energyAvailable == energyCapacityAvailable
+    ) {
+      spawnCreep("healer", spawn, roles["healer"]);
+    } else if (
       !spawn.spawning &&
       count["harvester"] < Memory.harvesters &&
       spawnEnergyAvailable >= 300

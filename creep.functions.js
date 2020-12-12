@@ -152,6 +152,20 @@ let creepFunctions = {
         }
       });
     }
+  },
+  scouting: (creep) => {
+    if (!creep.memory.xTarget) {
+      creep.memory.xTarget = 25;
+      creep.memory.yTarget = 25;
+      creep.memory.roomTarget = creep.room;
+    }
+
+    const pos = new RoomPostion(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
+    const moveToResult = creep.moveTo(pos, {
+      visualizePathStyle: {
+        stroke: '#0000ff'
+      }
+    });
   }
 };
 
