@@ -112,7 +112,7 @@ let creepFunctions = {
 
     if (targets.length == 0) {
       targets = creep.room.find(FIND_STRUCTURES).filter((structure) => {
-          return structure.structureType == STRUCTURE_STORAGE;
+        return structure.structureType == STRUCTURE_STORAGE;
       });
     }
 
@@ -211,14 +211,23 @@ let creepFunctions = {
 
     const pos = new RoomPosition(creep.memory.xTarget, creep.memory.yTarget, creep.memory.roomTarget);
 
-    if(creep.pos.isEqualTo(pos)) {
+    if (creep.pos.isEqualTo(pos)) {
       creep.attack(creep.room.controller)
+    } else if (Memory.attacking) {
+      const moveToResult = creep.moveTo(pos, {
+        visualizePathStyle: {
+          stroke: '#FF0000'
+        }
+      });
+    } else {
+      const waitingArea = new RoomPosition(47, 8, "E21N54");
+      const moveToResult = creep.moveTo(waitingArea, {
+        visualizePathStyle: {
+          stroke: '#0000ff'
+        }
+      });
     }
-    const moveToResult = creep.moveTo(pos, {
-      visualizePathStyle: {
-        stroke: '#0000ff'
-      }
-    });
+
   }
 };
 
