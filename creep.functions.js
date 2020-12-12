@@ -110,6 +110,12 @@ let creepFunctions = {
     // Get refueling targets
     const targets = selectors.refuelingTargets(creep.room);
 
+    if (targets.length == 0) {
+      targets = creep.room.find(FIND_STRUCTURES).filter((structure) => {
+          return structure.structureType == STRUCTURE_STORAGE;
+      });
+    }
+
     // Find the closest
     const closestTarget = creep.pos.findClosestByPath(targets);
     // Try to transfer to target
@@ -171,8 +177,8 @@ let creepFunctions = {
     // Find sources
     const sources = creep.room.find(FIND_STRUCTURES).filter((structure) => {
       return structure.structureType == STRUCTURE_CONTAINER &&
-      structure.store[RESOURCE_ENERGY] >= creep.store.getCapacity(RESOURCE_ENERGY) ||
-      structure.structureType == STRUCTURE_STORAGE
+        structure.store[RESOURCE_ENERGY] >= creep.store.getCapacity(RESOURCE_ENERGY) ||
+        structure.structureType == STRUCTURE_STORAGE
     });
 
     // Choose Source
