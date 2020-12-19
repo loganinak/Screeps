@@ -2,8 +2,7 @@ const debug = true;
 let creepFunctions = require("creep.functions");
 
 var roleScout = {
-
-  /** @param {Creep} creep **/
+  body: [1, 0, 0, 0, 0, 0, 0, 5, 200],
   run: (creepName) => {
     const creep = Game.creeps[creepName];
 

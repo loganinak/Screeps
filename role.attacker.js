@@ -3,8 +3,7 @@ let creepFunctions = require("creep.functions");
 let targetSelectors = require("functions.selectors");
 
 var roleAttacker = {
-
-  /** @param {Creep} creep **/
+  body: [2, 0, 0, 1, 0, 0, 0, 1, 10000],
   run: (creepName) => {
     const creep = Game.creeps[creepName];
 

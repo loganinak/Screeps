@@ -3,8 +3,7 @@ let creepFunctions = require("creep.functions");
 let targetSelectors = require("functions.selectors");
 
 var roleMiner = {
-
-  /** @param {Creep} creep **/
+  body: [1, 1, 0, 0, 0, 0, 0, 0, 10000],
   run: (creepName) => {
     const creep = Game.creeps[creepName];
 
