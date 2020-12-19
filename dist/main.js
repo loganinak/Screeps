@@ -14,6 +14,7 @@ module.exports.loop = () => {
   let initialized = true;
 
   // Initialize creep targets if there are none
+  // want to get rid of this
   if (!Memory.harvesters) {
     initialized = false;
     Memory.harvesters = 1;
